@@ -40,7 +40,6 @@ export default {
   watch: {
     file: {
       handler: function (val, oldVal) {
-        console.log('file', val)
       },
       deep: true
     }

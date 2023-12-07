@@ -14,10 +14,6 @@ export function useMarket(address) {
       dateStart: Math.floor(dateStart.getTime() / 1000),
       dateEnd: Math.floor(dateEnd.getTime() / 1000),
     }
-    // const  walletClient  = await getWalletClient()
-    console.log(eventParams)
-    console.log(price)
-    console.log('address', address)
     const { write, data, error, isLoading, isError, isSuccess } = useContractWrite({
       address: address,
       abi: marketAbi,

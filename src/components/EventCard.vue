@@ -43,10 +43,8 @@ const fetchMetadata = async (url) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log('data', data)
     state.nftData = data;
     state.imageUrl = getImageUrl(data.image);
-    console.log(state.imageUrl)
   }
   catch (error) {
     console.error("There was a problem fetching the metadata:", error);
@@ -56,7 +54,6 @@ const fetchMetadata = async (url) => {
 fetchMetadata(props.uri);
 
 const buyTicket = async () => {
-  console.log('buy ticket for event', props.eventId)
   const data = await writeContract({
     address: store.marketAddress,
     abi: marketAbi,
@@ -64,7 +61,6 @@ const buyTicket = async () => {
     functionName: 'buyTicket',
     value: props.price,
   })
-  console.log('data', data)
 }
 
 </script>

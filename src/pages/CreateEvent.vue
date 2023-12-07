@@ -27,6 +27,10 @@ const imageState = reactive({
   image: '',
 })
 
+const state = reactive({
+  monthView: { type: "month", month: 1, year: 2000 }
+})
+
 const uploadFile = async (image) => {
   if (!image[0]) {
     form.image = DefaultPoster;
@@ -51,7 +55,6 @@ const createEvent = async (uri = 'https', name='Test', amount = 10, dateStart = 
     functionName: 'createEvent',
   })
 
-  console.log('data', data)
 }
 
 const mintEvent = async (form) => {
@@ -70,19 +73,21 @@ const mintEvent = async (form) => {
 <template>
   <div class="va-gutter-2 flex gap-3 row justify-center">
     <va-card class="item flex flex-col md3">
-      <va-card-title>Create new event</va-card-title>
+      <va-card-title class="title">Create new event</va-card-title>
       <va-card-content>
         <va-form class="w-[300px]"
                  ref="createEventForm"
                  @submit="submitFile">
-          <va-input v-model="form.name" name="name" label="name"/>
-          <va-input v-model="form.description" name="description" label="description"/>
-          <va-input v-model="form.amount" name="amount" label="amount" type="number"/>
-          <va-input v-model="form.price" name="price" label="price" type="number"/>
-          <va-input v-model="form.address" name="address" label="address"/>
-          <va-input v-model="form.promoterInfo" name="promoterInfo" label="promoter Info"/>
-          <va-date-input v-model="form.dateStart" name="dateStart" label="dateStart"/>
-          <va-date-input v-model="form.dateEnd" name="dateEnd" label="dateEnd"/>
+          <va-input v-model="form.name" name="name" label="name" class="w-full mb-6"/>
+          <va-input v-model="form.description" name="description" label="description" class="w-full mb-6"/>
+          <va-input v-model="form.amount" name="amount" label="amount" type="number" class="w-full mb-6"/>
+          <va-input v-model="form.price" name="price" label="price" type="number" class="w-full mb-6"/>
+          <va-input v-model="form.address" name="address" label="address" class="w-full mb-6"/>
+          <va-input v-model="form.promoterInfo" name="promoterInfo" label="promoter Info" class="w-full mb-6"/>
+          <va-date-input v-model="form.dateStart" name="dateStart" label="Date Start" class="w-8/12 mb-6"/>
+          <va-time-input v-model="value" name="dateStart" label="Time Start" class="w-4/12 mb-6"/>
+          <va-date-input v-model="form.dateEnd" name="dateEnd" label="date End" class="w-8/12 mb-6"/>
+          <va-time-input v-model="value" name="dateStart" label="Time End" class="w-4/12 mb-6"/>
           <va-file-upload
               v-model="imageState.image"
               dropzone
@@ -99,7 +104,7 @@ const mintEvent = async (form) => {
 
     <va-card class="item flex flex-col md3">
       <va-card-title>Create new event</va-card-title>
-      <va-card-content>
+      <va-card-content class="d-flex justify-center">
         <demo-card :data="form"/>
       </va-card-content>
     </va-card>
@@ -123,6 +128,12 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+.title {
+  display: none;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
 }
 
 @media (min-width: 1024px) {

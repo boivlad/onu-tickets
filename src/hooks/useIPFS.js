@@ -16,7 +16,6 @@ export function useIPFS(apiToken) {
     }
   ) => {
     try {
-      console.log('file', image)
       const imageFile = new File([image],
         `poster.${image.name.split('.')[1]}`,
         { type: image.type }
@@ -34,7 +33,6 @@ export function useIPFS(apiToken) {
         }
       };
       const result = await client.store(metadata)
-      console.log(result)
       return `https://ipfs.io/ipfs/${result.url.split('ipfs://')[1]}`
     }
     catch (error) {

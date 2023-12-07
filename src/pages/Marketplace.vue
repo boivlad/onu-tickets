@@ -38,7 +38,7 @@ export default {
 <template>
   <div class="va-gutter-2 flex gap-3 row justify-center">
     <va-card class="item flex flex-col justify-center">
-      <va-card-title class="justify-center">Marketplace</va-card-title>
+      <va-card-title class="justify-center title">Marketplace</va-card-title>
       <va-card-content class="d-flex flex-wrap w-100">
         <event-card
             v-for="event in state.events"
@@ -72,6 +72,11 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+.title {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
 }
 
 @media (min-width: 1024px) {

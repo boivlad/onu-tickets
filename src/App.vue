@@ -2,6 +2,7 @@
 
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/vue'
 import { avalancheFuji } from '@wagmi/core/chains'
+import { reactive } from 'vue';
 
 // 1. Get projectId
 const projectId = 'd91206221ddaf87f5e96a7573d1a7038'
@@ -20,11 +21,20 @@ const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 // 3. Create modal
 createWeb3Modal({ wagmiConfig, projectId, chains })
 
+function isMobile() {
+  return screen.width <= 760;
+}
+
+const state = reactive({
+  enabled: false,
+  minimized: false,
+})
+
 </script>
 
 <template>
   <header>
-    <va-navbar>
+    <va-navbar v-if="!isMobile()">
       <template #left>
         <va-navbar-item class="navbar-item-slot">
           <h1>ONU NFT <b>Ticket</b> Market</h1>
@@ -32,7 +42,7 @@ createWeb3Modal({ wagmiConfig, projectId, chains })
       </template>
       <template #center>
         <va-navbar-item class="hidden sm:block">
-          <router-link to="/">Home</router-link>
+          <router-link to="/">Marketplace</router-link>
         </va-navbar-item>
         <va-navbar-item class="hidden sm:block">
           <router-link to="/create-event">New Event</router-link>
@@ -47,6 +57,33 @@ createWeb3Modal({ wagmiConfig, projectId, chains })
         </va-navbar-item>
       </template>
     </va-navbar>
+    <div v-if="isMobile()">
+      <div @click="state.enabled = !state.enabled"><h1>ONU <b>Ticket</b> Market</h1></div>
+      <va-sidebar
+          v-model="state.enabled"
+          class="sidebar"
+          animated="top"
+      >
+        <va-sidebar-item :active="$route.name === 'Marketplace'">
+          <va-sidebar-item-content>
+            <va-icon name="storefront"/>
+            <router-link to="/">Marketplace</router-link>
+          </va-sidebar-item-content>
+        </va-sidebar-item>
+        <va-sidebar-item :active="$route.name === 'CreateEvent'">
+          <va-sidebar-item-content>
+            <va-icon name="edit_calendar"/>
+            <router-link to="/create-event">New Event</router-link>
+          </va-sidebar-item-content>
+        </va-sidebar-item>
+        <va-sidebar-item :active="$route.name === 'MyTickets'">
+          <va-sidebar-item-content>
+            <va-icon name="book_online"/>
+            <router-link to="/my-tickets">My Tickets</router-link>
+          </va-sidebar-item-content>
+        </va-sidebar-item>
+      </va-sidebar>
+    </div>
   </header>
   <main>
     <router-view></router-view>
@@ -70,5 +107,29 @@ createWeb3Modal({ wagmiConfig, projectId, chains })
     width: 100%;
   }
 
+  .content {
+    width: 100%;
+    height: 100%;
+    background-color: var(--va-background-primary);
+  }
+}
+
+@media (max-width: 760px ) {
+  header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  h1 {
+    text-align: center;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    left: auto;
+  }
 }
 </style>

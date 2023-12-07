@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "npm run build && git add dist -f && git commit -m \"Adding dist\" && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "@apollo/client": "^3.8.6",

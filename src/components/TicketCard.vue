@@ -13,8 +13,8 @@ const props = defineProps({
   name: String,
   dateStart: String,
   dateEnd: String,
-  price: Number,
-  amount: Number,
+  price: String,
+  amount: String,
   uri: String,
   status: String,
 })
@@ -48,10 +48,8 @@ const fetchMetadata = async (url) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log('data', data)
     state.nftData = data;
     state.imageUrl = getImageUrl(data.image);
-    console.log(state.imageUrl)
   }
   catch (error) {
     console.error("There was a problem fetching the metadata:", error);
@@ -61,16 +59,13 @@ const fetchMetadata = async (url) => {
 fetchMetadata(props.uri);
 
 const refundTicket = async () => {
-  console.log('refundTicket ticket for event', props.eventId)
   const data = await writeContract({
     address: store.marketAddress,
     abi: marketAbi,
     args: [props.eventId, props.tokenId],
     functionName: 'refundTicket'
   })
-  console.log('data', data)
 }
-
 </script>
 <template>
   <div :class="['ticket', state.inActive ? 'disabled' : '']">

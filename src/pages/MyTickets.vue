@@ -53,8 +53,8 @@ export default {
 <template>
   <div class="va-gutter-2 flex gap-3 row justify-center">
     <va-card class="item flex flex-col justify-center">
-      <va-card-title class="justify-center">My Tickets</va-card-title>
-      <va-card-content class="d-flex flex-wrap w-100">
+      <va-card-title class="justify-center title">My Tickets</va-card-title>
+      <va-card-content class="d-flex flex-wrap w-100 justify-center">
         <ticket-card
             v-for="ticket in state.computedTickets"
             :name="ticket.event.ticketInfo_name"
@@ -89,6 +89,11 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+.title {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
 }
 
 @media (min-width: 1024px) {
