@@ -85,9 +85,9 @@ const mintEvent = async (form) => {
           <va-input v-model="form.address" name="address" label="address" class="w-full mb-6"/>
           <va-input v-model="form.promoterInfo" name="promoterInfo" label="promoter Info" class="w-full mb-6"/>
           <va-date-input v-model="form.dateStart" name="dateStart" label="Date Start" class="w-8/12 mb-6"/>
-          <va-time-input v-model="value" name="dateStart" label="Time Start" class="w-4/12 mb-6"/>
+          <va-time-input v-model="form.dateStart" name="dateStart" label="Time Start" class="w-4/12 mb-6"/>
           <va-date-input v-model="form.dateEnd" name="dateEnd" label="date End" class="w-8/12 mb-6"/>
-          <va-time-input v-model="value" name="dateStart" label="Time End" class="w-4/12 mb-6"/>
+          <va-time-input v-model="form.dateEnd" name="dateStart" label="Time End" class="w-4/12 mb-6"/>
           <va-file-upload
               v-model="imageState.image"
               dropzone
