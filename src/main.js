@@ -14,7 +14,7 @@ import MyTickets from '@/pages/MyTickets.vue';
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: import.meta.env.VITE_GRAPHQL_ENDPOINT,
+  uri: import.meta.env.VITE_GRAPHQL_ENDPOINT || "https://api.thegraph.com/subgraphs/name/boivlad/market-v2",
 })
 
 const mode = import.meta.env.MODE || 'development'
