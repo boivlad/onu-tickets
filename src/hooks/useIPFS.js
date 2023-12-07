@@ -17,7 +17,7 @@ export function useIPFS(apiToken) {
   ) => {
     try {
       const imageFile = new File([image],
-        `poster.${image.name.split('.')[1]}`,
+        `poster.${image.name.split('.')[image.name.split('.').length-1]}`,
         { type: image.type }
       )
       const metadata = {
