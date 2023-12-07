@@ -64,6 +64,9 @@ const state = reactive({
           class="sidebar"
           animated="top"
       >
+        <va-sidebar-item>
+          <w3m-button/>
+        </va-sidebar-item>
         <va-sidebar-item :active="$route.name === 'Marketplace'">
           <va-sidebar-item-content>
             <va-icon name="storefront"/>
